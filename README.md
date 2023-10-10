@@ -6,7 +6,7 @@ I will try to edit the original code for PyTorch 0.4 so that it is compatible wi
 ---
 * <b>Course 4 - Convolutional Neural Networks</b>
    * <b>Week 1</b>
-       * [ ] Convolution model - Application
+       * [x] Convolution model - Application: simplified the homewordk .ipynb code as well as `cnn_utils.py` to make them more readable.
    * <b>Week 2</b>
        * [ ] KerasTutorial
        * [ ] ResNets
