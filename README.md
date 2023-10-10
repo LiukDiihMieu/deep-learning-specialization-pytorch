@@ -9,7 +9,7 @@ I will try to edit the original code for PyTorch 0.4 so that it is compatible wi
        * [x] Convolution model - Application: simplified the homewordk .ipynb code as well as `cnn_utils.py` to make them more readable.
    * <b>Week 2</b>
        * [ ] KerasTutorial
-       * [ ] ResNets
+       * [x] ResNets
    * <b>Week 4</b>
        * [ ] Face Recognition
        * [ ] Neural Style Transfer
