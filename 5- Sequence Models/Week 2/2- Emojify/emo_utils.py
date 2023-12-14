@@ -61,7 +61,7 @@ def label_to_emoji(label):
     """
     Converts a label (int or string) into the corresponding emoji code (string) ready to be printed
     """
-    return emoji.emojize(emoji_dictionary[str(label)], use_aliases=True)
+    return emoji.emojize(emoji_dictionary[str(label)], language='alias')
               
     
 def print_predictions(X, pred):

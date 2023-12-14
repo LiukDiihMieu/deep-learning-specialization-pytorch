@@ -1,8 +1,8 @@
 import torch.nn as nn
 from torchvision import models
+from torchvision.models.vgg import VGG19_Weights
 import numpy as np
-import imageio
-
+from PIL import Image
 
 
 class CONFIG:
@@ -17,19 +17,28 @@ class CONFIG:
 
 
 class VGG19_StyleTransfer(nn.Module):
-    def __init__(self, layers=[None]):
-        super().__init__()
+    def __init__(self, layers=None):
+        '''
+        layers: list storing indices of intermediate layers that will be used.
+        '''
+        super(VGG19_StyleTransfer, self).__init__()
+        
+        # Ensure layers is a list even if None or single layer is provided
+        layers = [] if layers is None else layers if isinstance(layers, list) else [layers]
         self.layers = layers
-        layers_needed = max(layers)+1 if max(layers) is not None else None
-        features = list(models.vgg19(pretrained=True).features)[:layers_needed]
-        self.features = nn.ModuleList(features).eval()
+        
+        # Load the pre-trained VGG-19 model
+        vgg19 = models.vgg19(weights=VGG19_Weights.IMAGENET1K_V1)
+        
+        layers_needed = max(layers) + 1 if layers else None
+        self.features = nn.Sequential(*list(vgg19.features)[:layers_needed]).eval()
 
     def forward(self, x):
         results = {}
         for i, module in enumerate(self.features):
             x = module(x)
             if i in self.layers:
-                results[i] = x
+                results[i] = x  # store intermediate values
 
         return results
 
@@ -60,8 +69,7 @@ def reshape_and_normalize_image(image):
     # Substract the mean to match the expected input of VGG16
     image = image - CONFIG.MEANS
 
-    # Tranpose image to match the PyTorch format: N, C, H, W
+    # Tranpose image to match the PyTorch format: n_batch, n_channels, height, width
     image = np.transpose(image, (0, 3, 1, 2))
 
     return image
-

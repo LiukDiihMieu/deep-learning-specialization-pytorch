@@ -15,10 +15,9 @@ I will try to edit the original code for PyTorch 0.4 so that it is compatible wi
        * [ ] Neural Style Transfer
 * <b>Course 5 - Sequence Models</b>
    * <b>Week 1</b>
-       * [ ] Dinosaur Island -- Character-level language model
+       * [x] Dinosaur Island -- Character-level language model
    * <b>Week 2</b>
        * Emojify
-            * [ ] 1 - Baseline model: Emojifier-V1
+            * [x] 1 - Baseline model: Emojifier-V1&V2: added pytorch implementation of LSTM Emojify V2.
 ---
-
 
